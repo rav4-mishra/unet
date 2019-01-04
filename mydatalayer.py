@@ -7,9 +7,9 @@ class DataLayer(caffe.Layer):
 
     def setup(self, bottom, top):
 
-        self.imgdir = "/home/wangbin/caffeproject/unet/data/Img/"
-        self.maskdir = "/home/wangbin/caffeproject/unet/data/mask/"
-        self.imgtxt = "/home/wangbin/caffeproject/unet/data/test/img.txt"
+        self.imgdir = "/home/nd-archi/Documents/playground/play_caffe/real_crfasrnn/crfasrnn/cunet-model/train/images/"
+        self.maskdir = "/home/nd-archi/Documents/playground/play_caffe/real_crfasrnn/crfasrnn/cunet-model/train/masks/"
+        self.imgtxt = "/home/nd-archi/Documents/playground/play_caffe/real_crfasrnn/crfasrnn/cunet-model/img.txt"
         self.random = True
         self.seed = None
 
