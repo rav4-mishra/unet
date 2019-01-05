@@ -34,7 +34,7 @@ class DataLayer(caffe.Layer):
         self.data = self.load_image(self.idx)
         self.mask = self.load_mask(self.idx)
         # reshape tops to fit (leading 1 is for batch dimension)
-        top[0].reshape(1, *self.data.shape)
+        top[0].reshape(*self.data.shape)
         top[1].reshape(1, *self.mask.shape)
 
     def forward(self, bottom, top):
@@ -59,12 +59,14 @@ class DataLayer(caffe.Layer):
         imname = imname[:-1]
         #print 'load img %s' %imname
         im = cv2.imread(imname)
+	im = im[:, :, ::-1]
         #im = cv2.imread(imname)
-        #print im.shape
-        im = cv2.resize(im,(512,512))
-        im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-        im = np.array(im, np.float64)
-        im /= 255.0
+        print im.shape
+        #im = cv2.resize(im,(3,512,512))
+        #im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+        im = np.array(im, np.float32)
+        im = np.resize(im,(3,512,512))
+	im /= 255.0
         im -= 0.5
         return im[np.newaxis, :]
 

@@ -24,7 +24,7 @@ layer {
   }
   convolution_param {
     num_output: 64
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -43,7 +43,7 @@ layer {
   }
   convolution_param {
     num_output: 64
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -73,7 +73,7 @@ layer {
   }
   convolution_param {
     num_output: 128
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -92,7 +92,7 @@ layer {
   }
   convolution_param {
     num_output: 128
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -122,7 +122,7 @@ layer {
   }
   convolution_param {
     num_output: 256
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -141,7 +141,7 @@ layer {
   }
   convolution_param {
     num_output: 256
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -171,7 +171,7 @@ layer {
   }
   convolution_param {
     num_output: 512
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -190,7 +190,7 @@ layer {
   }
   convolution_param {
     num_output: 512
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -229,7 +229,7 @@ layer {
   }
   convolution_param {
     num_output: 1024
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -248,7 +248,7 @@ layer {
   }
   convolution_param {
     num_output: 1024
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -278,21 +278,9 @@ layer {
   }
 }
 layer {
-    name: 'crop1'
-    type: 'Crop'
-    bottom: 'conv4_2'
-    bottom: 'upscore1'
-    top: 'crop1'
-    crop_param {
-    axis: 2
-    offset: 4
-    offset: 4
-  }
-}
-layer {
     name: "concat1"
     type: "Concat"
-    bottom: "crop1"
+    bottom: "conv4_2"
     bottom: "upscore1"
     top: "concat1"
     concat_param {
@@ -314,7 +302,7 @@ layer {
   }
   convolution_param {
     num_output: 512
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -333,7 +321,7 @@ layer {
   }
   convolution_param {
     num_output: 512
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -354,21 +342,9 @@ layer {
   }
 }
 layer {
-    name: 'crop2'
-    type: 'Crop'
-    bottom: 'conv3_2'
-    bottom: 'upscore2'
-    top: 'crop2'
-    crop_param {
-    axis: 2
-    offset: 16
-    offset: 16
-  }
-}
-layer {
     name: "concat2"
     type: "Concat"
-    bottom: "crop2"
+    bottom: "conv3_2"
     bottom: "upscore2"
     top: "concat2"
     concat_param {
@@ -390,7 +366,7 @@ layer {
   }
   convolution_param {
     num_output: 256
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -409,7 +385,7 @@ layer {
   }
   convolution_param {
     num_output: 256
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -430,21 +406,9 @@ layer {
   }
 }
 layer {
-    name: 'crop3'
-    type: 'Crop'
-    bottom: 'conv2_2'
-    bottom: 'upscore3'
-    top: 'crop3'
-    crop_param {
-    axis: 2
-    offset: 40
-    offset: 40
-  }
-}
-layer {
     name: "concat3"
     type: "Concat"
-    bottom: "crop3"
+    bottom: "conv2_2"
     bottom: "upscore3"
     top: "concat3"
     concat_param {
@@ -466,7 +430,7 @@ layer {
   }
   convolution_param {
     num_output: 128
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -485,7 +449,7 @@ layer {
   }
   convolution_param {
     num_output: 128
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -506,21 +470,9 @@ layer {
   }
 }
 layer {
-    name: 'crop4'
-    type: 'Crop'
-    bottom: 'conv1_2'
-    bottom: 'upscore4'
-    top: 'crop4'
-    crop_param {
-    axis: 2
-    offset: 88
-    offset: 88
-  }
-}
-layer {
     name: "concat4"
     type: "Concat"
-    bottom: "crop4"
+    bottom: "conv1_2"
     bottom: "upscore4"
     top: "concat4"
     concat_param {
@@ -542,7 +494,7 @@ layer {
   }
   convolution_param {
     num_output: 64
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -561,7 +513,7 @@ layer {
   }
   convolution_param {
     num_output: 64
-    pad: 0
+    pad: 1
     kernel_size: 3
   }
 }
@@ -582,17 +534,5 @@ layer {
     num_output: 2
     pad: 0
     kernel_size: 1
-  }
-}
-layer {
-    name: 'crop5'
-    type: 'Crop'
-    bottom: 'mask'
-    bottom: 'score'
-    top: 'crop5'
-    crop_param {
-    axis: 2
-    offset: 92
-    offset: 92
   }
 }
