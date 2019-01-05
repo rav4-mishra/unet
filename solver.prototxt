@@ -7,9 +7,9 @@ base_lr: 0.001
 
 momentum: 0.9
 iter_size: 1
-max_iter: 1000
+max_iter: 10
 weight_decay: 0.0005
-snapshot: 10
+snapshot: 5
 snapshot_prefix: "train"
 test_initialization: false
 solver_mode: CPU

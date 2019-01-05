@@ -1,3 +1,6 @@
+import sys
+_CAFFE_ROOT = "../../caffe-crfrnn/"
+sys.path.insert(0, _CAFFE_ROOT + "python")
 import caffe
 import numpy as np
 import cv2
@@ -53,12 +56,12 @@ class DataLayer(caffe.Layer):
     def load_image(self, idx):
 
         imname = self.imgdir + self.lines[idx]
-        imname = imname[:-2]
+        imname = imname[:-1]
         #print 'load img %s' %imname
         im = cv2.imread(imname)
         #im = cv2.imread(imname)
         #print im.shape
-        im = cv2.resize(im,(572,572))
+        im = cv2.resize(im,(512,512))
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
         im = np.array(im, np.float64)
         im /= 255.0
@@ -66,13 +69,13 @@ class DataLayer(caffe.Layer):
         return im[np.newaxis, :]
 
     def load_mask(self, idx):
-	outimg = np.empty((2,572,572))
+	outimg = np.empty((2,512,512))
         imname = self.maskdir + self.lines[idx]
-        imname = imname[:-2]
+        imname = imname[:-5]+'_mask.png'
         #print 'load mask %s' %imname
         im = cv2.imread(imname)
         im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
-	im = cv2.resize(im,(572,572))
+	im = cv2.resize(im,(512,512))
         ret, img = cv2.threshold(im, 0.5, 1.0, cv2.THRESH_BINARY)
 	#ret, back = cv2.threshold(im, 0.5, 1.0, cv2.THRESH_BINARY_INV)
 	#outimg[0, ...] = img;
